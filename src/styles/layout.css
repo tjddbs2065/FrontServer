@@ -1,0 +1,55 @@
+/* 세로 흐름 */
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 가로 흐름 */
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 완전 중앙 */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 세로 스택 */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 가로 정렬 */
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 양 끝 정렬 */
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 중앙 컨테이너 */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* 화면 가득 중안 콘텐츠 */
+.screenCenter {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
