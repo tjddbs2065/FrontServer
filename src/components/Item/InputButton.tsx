@@ -1,4 +1,4 @@
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "basic";
 type Size = "sm" | "md" | "lg";
 
 type Props = {
@@ -8,10 +8,11 @@ type Props = {
     disabled?: boolean;
 }
 
-export default function InputButton({text, variant="primary", size="md", disabled}: Props){
-    const BASE = "px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 cursor-pointer";
+export default function InputButton({text, variant="basic", size="md", disabled}: Props){
+    const BASE = "px-4 py-2 rounded-lg cursor-pointer";
 
     const VARIANT = {
+        basic: "bg-yellow-400 text-black hover:bg-yellow-500",
         primary: "bg-blue-500 text-white hover:bg-blue-600",
         secondary:"bg-zinc-200 text-zinc-800 hover:bg-zinc-300"
     };

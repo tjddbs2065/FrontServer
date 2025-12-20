@@ -8,26 +8,26 @@ export function HeaderLayout(){
             
             <div className="w-40 flex flex-col h-full">
                 <HeaderDropDown 
-                header="매 출"
+                headerText="매 출"
                 contents={["매출 조회", "주문 조회"]}/>
             </div>
             <div className="w-40 flex flex-col h-full">
                 <HeaderDropDown 
-                header="품목/재고"
+                headerText="품목/재고"
                 contents={["품목 조회", "재고 현황 조회", "재고 변동 조회", "발주", "발주 내역 조회", "발주 제안"]}/>
             </div>
             <div className="w-40 flex flex-col h-full">
                 <HeaderDropDown 
-                header="메 뉴"
+                headerText="메 뉴"
                 contents={["메뉴 등록", "메뉴 조회", "판매 메뉴 관리"]}/>
             </div>
             <div className="w-40 flex flex-col h-full">
                 <HeaderDropDown 
-                header="직영점 목록"/>
+                headerText="직영점 목록"/>
             </div>
             <div className="w-40 flex flex-col h-full">
                 <HeaderDropDown 
-                header="계정 관리"
+                headerText="계정 관리"
                 contents={["계정 등록", "계정 목록 조회"]}/>
             </div>
             <div className="w-40 flex flex-col h-full">
@@ -39,9 +39,10 @@ export function HeaderLayout(){
 }
 
 type HeaderDropDownProps = {
-    header: string,
+    headerText: string,
     contents?: string[]
 };
+
 function HeaderDropDown(headerInfo: HeaderDropDownProps){
     const [open, setOpen] = useState(false);
 
@@ -52,7 +53,7 @@ function HeaderDropDown(headerInfo: HeaderDropDownProps){
             onMouseLeave={()=>setOpen(false)}
         >
                 <div className="cursor-pointer w-full h-full center hover:bg-gray-100 rounded-xl">
-                    <HeaderText text={headerInfo.header}/>
+                    <HeaderText text={headerInfo.headerText}/>
                 </div>
             {
                 open && headerInfo.contents && 

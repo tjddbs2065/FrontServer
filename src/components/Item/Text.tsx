@@ -1,4 +1,4 @@
-type Size = "sm" | "md" | "lg" | "xl";
+type Size = "sm" | "md" | "lg" | "xl" | "xxl";
 type Style = "bold" | "medium";
 type TextProps = {
     text: string;
@@ -13,6 +13,7 @@ export default function Text({text, size="md", style="medium"}: TextProps){
             md: "text-md",
             lg: "text-lg",
             xl: "text-xl",
+            xxl: "text-2xl",
         };
         const STYLE = {
             bold: "font-bold",

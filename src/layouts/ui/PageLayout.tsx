@@ -1,18 +1,15 @@
-type BodyAlign = "left" | "center";
-
 interface PageLayoutProps{
     header?: React.ReactNode;
     footer?: React.ReactNode;
     children: React.ReactNode;
-    bodyAlign?: BodyAlign;
 }
 
-export default function PageLayout({header, footer, children, bodyAlign = "center"}: PageLayoutProps){
+export default function PageLayout({header, footer, children}: PageLayoutProps){
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className={`h-screen flex flex-col`}>
             {header && (<header className="w-full border-b">{header}</header>)}
 
-            <main className={`flex flex-row flex-1 ${bodyAlign === "center" ? "justify-center" : "justify-start"}`}>
+            <main className={`flex-1 flex overflow-hidden`}>
                 {children}
             </main>
 
