@@ -1,4 +1,4 @@
-import Title from "../../components/Item/Title";
+import Title from "../../components/Common/Elements/Title";
 
 interface ContentLayoutProps{
     title?: string

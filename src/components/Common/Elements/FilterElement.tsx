@@ -7,9 +7,9 @@ interface FilterElementProps{
 
 export default function FilterElement(filterInfo: FilterElementProps){
     return(
-        <div className="w-40 h-full p-1 flex flex-col">
+        <div className="h-full p-2 flex flex-col">
             <Text text={filterInfo.text} style="bold" />
-            <div>
+            <div className="flex flex-row gap-1">
                 {filterInfo.children}
             </div>
         </div>

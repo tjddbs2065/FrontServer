@@ -1,5 +1,5 @@
-import type { Column } from "./ListContainer";
-import Text from "../Item/Text";
+import type { Column } from "./ListForm";
+import Text from "../Elements/Text";
 
 export function ListHeader<T>({columns}: {columns: Column<T>[]}) {
     const gridCols: Record<number, string> = {

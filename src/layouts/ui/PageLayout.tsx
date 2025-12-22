@@ -9,7 +9,7 @@ export default function PageLayout({header, footer, children}: PageLayoutProps){
         <div className={`h-screen flex flex-col`}>
             {header && (<header className="w-full border-b">{header}</header>)}
 
-            <main className={`flex-1 flex overflow-hidden`}>
+            <main className={`flex-1 flex flex-col overflow-hidden`}>
                 {children}
             </main>
 

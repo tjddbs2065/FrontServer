@@ -1,4 +1,4 @@
-import type { Column, MenuRow } from "./ListContainer";
+import type { Column, MenuRow } from "./ListForm";
 import { ListItem } from "./ListItem";
 
 export function ListBody({ columns, rows }: {columns:Column<MenuRow>[], rows:MenuRow[]}) {

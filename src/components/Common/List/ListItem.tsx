@@ -1,5 +1,5 @@
-import type { Column } from "./ListContainer";
-import Text from "../Item/Text";
+import type { Column } from "./ListForm";
+import Text from "../Elements/Text";
 
 export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:T;}) {
     const gridCols: Record<number, string> = {
