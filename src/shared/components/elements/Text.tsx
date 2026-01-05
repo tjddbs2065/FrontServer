@@ -7,7 +7,7 @@ type TextProps = {
 }
 
 export default function Text({text, size="md", style="medium"}: TextProps){
-        const BASE = "";
+        const BASE = "leading-none";
         const SIZE = {
             sm: "text-sm",
             md: "text-md",
