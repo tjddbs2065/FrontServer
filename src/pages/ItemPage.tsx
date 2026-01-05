@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { ItemContainer } from "./ItemContainer";
-import PageLayout from "../../shared/layouts/ui/PageLayout";
-import { PageContainer } from "../../shared/layouts/ui/PageForm";
-import { ContentLayout } from "../../shared/layouts/ui/ContentLayout";
-import { HeaderLayout } from "../../shared/components/Header";
-import CategoryContainer from "../../shared/components/list/CategoryForm";
-import FilterElement from "../../shared/components/elements/FilterElement";
-import Selector from "../../shared/components/elements/Selector";
-import InputButton from "../../shared/components/elements/InputButton";
-import InputText from "../../shared/components/elements/InputText";
-import PaginatinoContainer from "../../shared/components/PaginationForm";
+import PageLayout from "../shared/layouts/ui/PageLayout";
+import { PageContainer } from "../shared/layouts/ui/PageForm";
+import { ContentLayout } from "../shared/layouts/ui/ContentLayout";
+import { HeaderLayout } from "../shared/components/Header";
+import CategoryContainer from "../shared/components/list/CategoryForm";
+import FilterElement from "../shared/components/elements/FilterElement";
+import Selector from "../shared/components/elements/Selector";
+import InputButton from "../shared/components/elements/InputButton";
+import InputText from "../shared/components/elements/InputText";
+import PaginationContainer from "../shared/components/pagination/PaginationContainer";
+import ItemContainer from "../features/item/ui/ItemContainer";
 
 
 export default function ItemPage(){
@@ -47,7 +47,7 @@ export default function ItemPage(){
 
                         <ItemContainer pageNo = {pageNo} totalElem={setTotalElem} />
 
-                        <PaginatinoContainer pageSize={10} totalCount={totalElem} currentPage={pageNo} onPageChange={setPage} />
+                        <PaginationContainer pageSize={10} totalCount={totalElem} currentPage={pageNo} onPageChange={setPage} />
                     </>
                 </ContentLayout>
             </PageContainer>

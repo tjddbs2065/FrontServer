@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuthStore } from "./AuthStore";
+import { useAuthStore } from "../../features/auth/model/AuthStore";
 
 const getToken = (): string|null =>{
     return localStorage.getItem("accessToken");

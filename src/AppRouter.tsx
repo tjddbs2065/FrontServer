@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./features/auth/LoginPage";
-import ItemPage from "./features/item/ItemPage";
-import MenuPage from "./features/menu/MenuPage";
-import { useAuthStore } from "./shared/utils/AuthStore";
+import LoginPage from "./pages/LoginPage";
+import ItemPage from "./pages/ItemPage";
+import { useAuthStore } from "./features/auth/model/AuthStore";
 import MainLayout from "./shared/layouts/route/MainLayout";
+import MenuPage from "./pages/MenuPage";
 
 export default function SystemApp(){
     return (

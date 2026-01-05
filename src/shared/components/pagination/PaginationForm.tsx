@@ -1,25 +1,16 @@
 type PaginationProps = {
-  totalCount: number;        // 전체 데이터 수
-  pageSize: number;          // 한 페이지에 보여줄 개수
-  currentPage: number;       // 현재 페이지
-  onPageChange: (page: number) => void;
+            totalCount: number;
+            pageSize: number;
+            currentPage: number;
+            onPageChange: (page: number) => void;
 };
 
-export default function PaginatinoContainer({
-    totalCount,
-    pageSize,
-    currentPage,
-    onPageChange,
-}: PaginationProps){
-
+export default function PaginationForm({ totalCount, pageSize, currentPage, onPageChange }: PaginationProps) {
     const totalPages = Math.ceil(totalCount / pageSize);
     const currentArea = Math.floor((currentPage - 1) / pageSize) * 10 + 1;
     const endPage = Math.min(currentArea + pageSize - 1, totalPages);
     const pageCount = endPage - currentArea + 1;
 
-
-    if (totalPages <= 1) return null;
-    
     return (
         <div className="flex gap-2 justify-center">
             {/* 이전 */}
