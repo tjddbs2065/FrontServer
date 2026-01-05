@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HeaderText from "./Common/Elements/HeaderText";
+import HeaderText from "../components/elements/HeaderText";
 
 export function HeaderLayout(){
     return (

@@ -1,7 +1,7 @@
 import { useForm, type FieldValues } from "react-hook-form";
 import LoginForm from "./LoginForm";
-import { loginApi } from "../../utils/loginApi";
 import { useNavigate } from "react-router-dom";
+import { loginApi } from "./loginApi";
 
 export interface LoginFormValues{
     managerId: string;

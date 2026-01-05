@@ -1,8 +1,8 @@
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
-import InputButton from "../Common/Elements/InputButton";
-import Text from "../Common/Elements/Text";
-import InputText from "../Common/Elements/InputText";
 import type { LoginFormValues } from "./LoginContainer";
+import Text from "../../shared/components/elements/Text";
+import InputText from "../../shared/components/elements/InputText";
+import InputButton from "../../shared/components/elements/InputButton";
 
 
 interface LoginFormProps{

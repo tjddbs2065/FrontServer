@@ -1,5 +1,5 @@
-import type { Column } from "./ListForm";
-import Text from "../Elements/Text";
+import Text from "../../../shared/components/elements/Text";
+import type { Column } from "./RowItem";
 
 export function ListHeader<T>({columns}: {columns: Column<T>[]}) {
     const gridCols: Record<number, string> = {
@@ -11,6 +11,7 @@ export function ListHeader<T>({columns}: {columns: Column<T>[]}) {
         6: "grid-cols-6",
         7: "grid-cols-7",
         8: "grid-cols-8",
+        9: "grid-cols-9",
     }
     return (
     <div className={`grid ${gridCols[columns.length]} bg-gray-100 px-3 py-2 place-items-center`}>

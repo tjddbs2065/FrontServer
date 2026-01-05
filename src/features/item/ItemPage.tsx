@@ -1,19 +1,20 @@
-import PageLayout from "../../layouts/ui/PageLayout";
-import {HeaderLayout} from "../Header";
-import { ContentLayout } from "../../layouts/ui/ContentLayout";
-import { PageContainer } from "../../layouts/ui/PageForm";
-import CategoryContainer from "../Common/List/CategoryForm";
-import PaginatinoContainer from "../PaginationContainer";
 import { useState } from "react";
-import FilterElement from "../Common/Elements/FilterElement";
-import Selector from "../Common/Elements/Selector";
-import InputButton from "../Common/Elements/InputButton";
-import InputText from "../Common/Elements/InputText";
-import { getItem } from "../../utils/itemApi";
 import { ItemContainer } from "./ItemContainer";
+import PageLayout from "../../shared/layouts/ui/PageLayout";
+import { PageContainer } from "../../shared/layouts/ui/PageForm";
+import { ContentLayout } from "../../shared/layouts/ui/ContentLayout";
+import { HeaderLayout } from "../../shared/components/Header";
+import CategoryContainer from "../../shared/components/list/CategoryForm";
+import FilterElement from "../../shared/components/elements/FilterElement";
+import Selector from "../../shared/components/elements/Selector";
+import InputButton from "../../shared/components/elements/InputButton";
+import InputText from "../../shared/components/elements/InputText";
+import PaginatinoContainer from "../../shared/components/PaginationForm";
+
 
 export default function ItemPage(){
-    const [page, setPage] = useState(1);
+    const [pageNo, setPage] = useState(1);
+    const [totalElem, setTotalElem] = useState(1);
 
     return (
         <PageLayout 
@@ -38,14 +39,15 @@ export default function ItemPage(){
                             </div>
                             <div className="flex flex-row">
                                 <FilterElement text="보기">
-                                    <InputButton text="목록" onClick={()=>{getItem(1)}}/>
+                                    <InputButton text="목록" />
                                     <InputButton text="이미지" variant="secondary"/>
                                 </FilterElement>
                             </div>
                         </CategoryContainer>
-                        <ItemContainer/>
 
-                        <PaginatinoContainer pageSize={10} totalCount={128} currentPage={page} onPageChange={setPage} />
+                        <ItemContainer pageNo = {pageNo} totalElem={setTotalElem} />
+
+                        <PaginatinoContainer pageSize={10} totalCount={totalElem} currentPage={pageNo} onPageChange={setPage} />
                     </>
                 </ContentLayout>
             </PageContainer>

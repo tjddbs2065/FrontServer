@@ -1,7 +1,8 @@
-import type { Column } from "./ListForm";
-import Text from "../Elements/Text";
 
-export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:T;}) {
+import Text from "../../../shared/components/elements/Text";
+import type { Column } from "./RowItem";
+
+export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:Partial<T>;}) {
     const gridCols: Record<number, string> = {
         1: "grid-cols-1",
         2: "grid-cols-2",
@@ -12,7 +13,7 @@ export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:T;}) {
         7: "grid-cols-7",
         8: "grid-cols-8",
     }
-
+    
     return (
     <div className={`grid ${gridCols[columns.length]} px-3 py-2 place-items-center`}>
         {columns.map(col => (

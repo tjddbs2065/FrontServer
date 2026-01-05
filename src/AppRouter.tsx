@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import MainLayout from "./layouts/route/MainLayout";
-import LoginPage from "./pages/LoginPage";
-import ItemPage from "./components/Item/ItemPage";
-import MenuPage from "./pages/MenuPage";
+import LoginPage from "./features/auth/LoginPage";
+import ItemPage from "./features/item/ItemPage";
+import MenuPage from "./features/menu/MenuPage";
+import { useAuthStore } from "./shared/utils/AuthStore";
+import MainLayout from "./shared/layouts/route/MainLayout";
 
 export default function SystemApp(){
     return (
@@ -10,7 +11,7 @@ export default function SystemApp(){
             <Routes>
                 <Route element={<MainLayout/>}>
                     <Route path="/menu" element={<ProtectedRoute children={<MenuPage/>} />}></Route>
-                    <Route path="/item" element={<ItemPage/>}></Route>
+                    <Route path="/item" element={<ProtectedRoute children={<ItemPage/>} />}></Route>
                     <Route path="/login" element={<LoginPage/>}></Route>
                 </Route>
             </Routes>
@@ -18,10 +19,13 @@ export default function SystemApp(){
     )
 }
 
-function ProtectedRoute({children}: {children: React.ReactNode}){
-    const token = localStorage.getItem("accessToken");
 
-    if(!token)
-        return <Navigate to="/login" replace />
-    return children;
+// jwt가 없으면 로그인 페이지로 이동
+function ProtectedRoute({children}: {children: React.ReactNode}){
+    const isLoggedIn = useAuthStore((state)=>state.isLoggedIn);
+    if(!isLoggedIn){
+        return <Navigate to="/login" replace />;
+    }
+
+    return <>{children}</>;
 }

@@ -1,17 +1,15 @@
-import PageLayout from "../layouts/ui/PageLayout";
-import {HeaderLayout} from "../components/Header";
-import { ContentLayout } from "../layouts/ui/ContentLayout";
-import { PageContainer } from "../layouts/ui/PageForm";
-import CategoryContainer from "../components/Common/List/CategoryForm";
-import ListForm from "../components/Common/List/ListForm";
-import PaginatinoContainer from "../components/PaginationContainer";
-import { useState } from "react";
-import FilterElement from "../components/Common/Elements/FilterElement";
-import Selector from "../components/Common/Elements/Selector";
-import InputButton from "../components/Common/Elements/InputButton";
+import { HeaderLayout } from "../../shared/components/Header";
+import CategoryContainer from "../../shared/components/list/CategoryForm";
+import FilterElement from "../../shared/components/elements/FilterElement";
+import Selector from "../../shared/components/elements/Selector";
+import InputButton from "../../shared/components/elements/InputButton";
+import { MenuContainer } from "./MenuContainer";
+import PageLayout from "../../shared/layouts/ui/PageLayout";
+import { PageContainer } from "../../shared/layouts/ui/PageForm";
+import { ContentLayout } from "../../shared/layouts/ui/ContentLayout";
+
 
 export default function MenuPage(){
-    const [page, setPage] = useState(1);
     return (
         <PageLayout 
             header={<HeaderLayout/>}
@@ -36,8 +34,8 @@ export default function MenuPage(){
                                 </FilterElement>
                             </div>
                         </CategoryContainer>
-                        <ListForm />
-                        <PaginatinoContainer pageSize={10} totalCount={128} currentPage={page} onPageChange={setPage} />
+
+                        <MenuContainer />
                     </>
                 </ContentLayout>
             </PageContainer>

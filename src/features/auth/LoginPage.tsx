@@ -1,6 +1,6 @@
-import PageLayout from "../layouts/ui/PageLayout";
-import { PageContainer } from "../layouts/ui/PageForm";
-import LoginContainer from "../components/Login/LoginContainer";
+import { PageContainer } from "../../shared/layouts/ui/PageForm";
+import PageLayout from "../../shared/layouts/ui/PageLayout";
+import LoginContainer from "./LoginContainer";
 
 export default function LoginPage(){
     return (
