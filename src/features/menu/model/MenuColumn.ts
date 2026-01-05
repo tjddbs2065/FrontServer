@@ -1,9 +1,5 @@
-import type { Column, Row } from "../../../shared/components/list/RowItem";
+import type { Column } from "../../../shared/components/list/RowItem";
 import type Menu from "./Menu";
-
-// Menu의 데이터 
-export interface MenuRow extends Row, Menu{
-}
 
 export const menuColumn:Column<Menu>[] = [
     {key: "menuCode", label: "메뉴코드"},

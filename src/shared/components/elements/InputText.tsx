@@ -1,7 +1,6 @@
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 interface InputTextProps extends ComponentPropsWithoutRef<"input"> {
-    text: string;
 }
 
 const InputText = forwardRef<HTMLInputElement, InputTextProps>((props, ref) => {

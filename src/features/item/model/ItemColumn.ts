@@ -1,5 +1,5 @@
 import type { Column } from "../../../shared/components/list/RowItem";
-import type Item from "./item";
+import type Item from "./Item";
 
 export const itemColumn: Column<Item>[] = [
     {key: "itemCategory", label: "카테고리"},

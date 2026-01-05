@@ -4,8 +4,8 @@ import { ListHeader } from "../../../shared/components/list/ListHeader";
 import ListForm from "../../../shared/components/list/ListForm";
 import { ListBody } from "../../../shared/components/list/ListBody";
 import { getItem } from "../api/itemApi";
-import type Item from "../model/item";
-import { itemColumn } from "../model/itemColumn";
+import { itemColumn } from "../model/ItemColumn";
+import type Item from "../model/Item";
 
 export default function ItemContainer({pageNo, totalElem}:{pageNo:number, totalElem: (totalNo: number)=>void}){    
 

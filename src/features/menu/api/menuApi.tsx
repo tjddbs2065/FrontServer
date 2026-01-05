@@ -3,7 +3,7 @@ import { apiClient } from "../../../shared/utils/axios";
 import type Menu from "../model/Menu";
 
 export const getMenu = async () => {
-    const result = await apiClient.get<ApiResponse<Menu[]>>(`/menu/menuList`);
+    const result = await apiClient.get<ApiResponse<Menu[]>>(`/api/menu/menuList`);
     return {
         data: result.data.data
     };

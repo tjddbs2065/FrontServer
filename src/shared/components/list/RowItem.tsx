@@ -2,7 +2,7 @@
 export interface Column<T>{
     key: keyof T;
     label: string;
-    render?: (value: T[keyof T] | undefined) => React.ReactNode;
+    render?: (value: T[keyof T] | undefined, row?: Partial<T>) => React.ReactNode;
 }
 export interface Row{
     id: number;
