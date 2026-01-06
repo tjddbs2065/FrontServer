@@ -2,7 +2,7 @@
 import Text from "../../../shared/components/elements/Text";
 import type { Column } from "./RowItem";
 
-export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:Partial<T>;}) {
+export function ListItem<T>({ columns, row, index }: {columns:Column<T>[]; row: T; index?: number;}) {
     const gridCols: Record<number, string> = {
         1: "grid-cols-1",
         2: "grid-cols-2",
@@ -18,7 +18,7 @@ export function ListItem<T>({ columns, row }: {columns:Column<T>[]; row:Partial<
     <div className={`grid ${gridCols[columns.length]} w-full h-14 items-center text-center border-b border-gray-200 shrink-0`}>
         {columns.map(col => (
             <div key={String(col.key)} className="truncate w-full">
-                {col.render ? col.render(row[col.key], row) : <Text text={String(row[col.key])} />}
+                {col.render ? col.render(row, index) : <Text text={String(row[col.key as keyof T])} />}
             </div>
         ))}
     </div>

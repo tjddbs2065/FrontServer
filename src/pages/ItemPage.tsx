@@ -33,7 +33,7 @@ export default function ItemPage(){
                                     <Selector contents={["선택", "출시예정", "출시 중", "출시중단"]}/>
                                 </FilterElement>
                                 <FilterElement text="검색어">
-                                    <InputText text="검색어 입력"/>
+                                    <InputText placeholder="검색어 입력"/>
                                     <InputButton text="검색" />
                                 </FilterElement>
                             </div>

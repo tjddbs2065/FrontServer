@@ -9,9 +9,12 @@ import Selector from "../../../shared/components/elements/Selector";
 import InputText from "../../../shared/components/elements/InputText";
 import InputButton from "../../../shared/components/elements/InputButton";
 import HeaderText from "../../../shared/components/elements/HeaderText";
+import type { Column } from "../../../shared/components/list/RowItem";
+import { toItemSelectedFromOrder } from "../model/utils";
+import { useItemOrderStore } from "../model/ItemOrderStore";
+
 
 export function ItemOrderItemContainer(){
-
     const {data:itemOrderItems, isLoading} = useQuery({
         queryKey: ['itemOrderItems'],
         queryFn: async () => {
@@ -20,17 +23,19 @@ export function ItemOrderItemContainer(){
         },
         placeholderData: keepPreviousData,
     });
-
-    const columns = [
+    const addItem = useItemOrderStore(s => s.addItem);
+    
+    const columns: Column<ItemOrderItem>[] = [
         ...itemOrderItemColumn,
         {
-            key: "actions" as any,
+            key: "actions" as string,
             label: "상세보기",
-            render: () => {
-                return <InputButton text="담기"/>;
+            render: (item) => {
+                return <InputButton text="담기" onClick={() => addItem?.(toItemSelectedFromOrder(item))}/>;
             }
         }
-    ]
+    ];
+    
     return(
         <div className="flex-1 flex flex-col p-2 gap-2">
             <div className="flex flex-row gap-2 items-center">
@@ -44,7 +49,7 @@ export function ItemOrderItemContainer(){
                 <ListBody
                     data={itemOrderItems}
                     columns={columns}
-                    isLoading={isLoading && !itemOrderItems} // keepPreviousData 사용 시 깜빡임 방지
+                    isLoading={isLoading && !itemOrderItems}
                 />
             </ListForm>
         </div>

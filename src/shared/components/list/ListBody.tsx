@@ -2,7 +2,7 @@ import { ListItem } from "./ListItem";
 import type { Column } from "./RowItem";
 
 interface ListBodyProps<T> {
-    data: T[] | undefined;
+    data?: T[] | undefined;
     columns: Column<T>[];
     isLoading?: boolean;
     emptyMessage?: string;
@@ -16,7 +16,7 @@ export function ListBody<T>({ data, columns, isLoading, emptyMessage = "데이�
     return (
         <>
             {data.map((row, index) => (
-                <ListItem key={index} columns={columns} row={row} />
+                <ListItem key={index} columns={columns} row={row} index={index} />
             ))}
         </>
     );
