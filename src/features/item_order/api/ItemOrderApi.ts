@@ -16,9 +16,17 @@ export const getItemProposal = async () => {
     };
 };
 
-export const respondProposal = async (proposalId: number) => {
-    const result = ((await apiClient.put(`/api/itemOrder/respondItemProposal`, {proposalId: proposalId})));
+export const respondProposal = async (proposalNo: number) => {
+    const result = await apiClient.put<ApiResponse<void>>(`/api/itemOrder/respondItemProposal/${proposalNo}`);
     return {
-        data: result.data.data
+        data: result.data
     };
 };
+
+export const requestItemOrder = async ({totalPrice, totalItem, selectedItems} : {totalPrice: number, totalItem: number, selectedItems: ItemOrderItem[]}) => {
+    const data = { totalPrice, totalItem, orderList: selectedItems };
+    const result = await apiClient.post<ApiResponse<void>>(`/api/itemOrder/itemOrder`, data);
+    return {
+        data: result.data
+    };
+}

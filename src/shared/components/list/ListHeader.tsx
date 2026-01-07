@@ -2,22 +2,19 @@ import Text from "../../../shared/components/elements/Text";
 import type { Column } from "./RowItem";
 
 export function ListHeader<T>({columns}: {columns: Column<T>[]}) {
-    const gridCols: Record<number, string> = {
-        1: "grid-cols-1",
-        2: "grid-cols-2",
-        3: "grid-cols-3",
-        4: "grid-cols-4",
-        5: "grid-cols-5",
-        6: "grid-cols-6",
-        7: "grid-cols-7",
-        8: "grid-cols-8",
-        9: "grid-cols-9",
-    }
+    const gridTemplateColumn = columns.map(col=>{
+        if(col.width === "auto") return "auto";
+        if(col.width === "fill") return "1fr";
+        if(typeof col.width === "number") return `${col.width}px`;
+        return "1fr";
+    }).join(" ");
+
     return (
-    // h-12: 높이를 3rem(48px)으로 고정하고, items-center로 내부 요소를 수직 중앙 정렬합니다.
-    <div className={`grid ${gridCols[columns.length]} bg-gray-100 h-12 items-center text-center pr-[16px]`}>
+    <div className={`grid bg-gray-100 h-12 items-center text-center pr-[16px] pl-4`}
+        style={{gridTemplateColumns: gridTemplateColumn}}
+    >
         {columns.map(col=>(
-            <div key={String(col.key)}>
+            <div key={String(col.key)} className="px-1">
                 <Text text={col.label} style="bold"/>
             </div>
         ))}

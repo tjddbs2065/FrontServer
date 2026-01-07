@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { getItemProposal, respondProposal } from "../api/ItemOrderApi";
+import { getItemProposal } from "../api/ItemOrderApi";
 import type ItemProposal from "../model/ItemProposal";
 import { itemProposalColumn } from "../model/ItemProposalColumn";
 import InputButton from "../../../shared/components/elements/InputButton";
@@ -8,6 +8,7 @@ import { ListHeader } from "../../../shared/components/list/ListHeader";
 import ListForm from "../../../shared/components/list/ListForm";
 import { ListBody } from "../../../shared/components/list/ListBody";
 import Text from "../../../shared/components/elements/Text";
+import useRespondProposal from "./hooks/useAcceptProposal";
 import { useItemOrderStore } from "../model/ItemOrderStore";
 import { toItemSelectedFromOrder } from "../model/utils";
 
@@ -21,21 +22,24 @@ export function ItemProposalContainer(){
         },
         placeholderData: keepPreviousData,
     });
+    const respondProposal = useRespondProposal();
     const addItem = useItemOrderStore(s => s.addItem);
+
 
     const columns: Column<ItemProposal>[] = [
         ...itemProposalColumn,
         {
             key: "actions" as string,
             label: "관리",
+            width: 110,
             render: (item) => {
                 return (
-                    <div className="flex gap-2">
-                        <InputButton text="담기" onClick={() => {
-                            respondProposal(item.proposalNo);
-                            addItem?.(toItemSelectedFromOrder(item))
+                    <div className="flex gap-1 items-center justify-center">
+                        <InputButton size="sm" text="담기" onClick = {() => {
+                            respondProposal(item)
+                            addItem(toItemSelectedFromOrder(item))
                         }} />
-                        <InputButton text="취소" variant="secondary"/>
+                        <InputButton size="sm" text="취소" variant="secondary" onClick={()=>respondProposal(item)}/>
                     </div>
                 );
             }

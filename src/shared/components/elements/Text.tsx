@@ -1,12 +1,12 @@
 type Size = "sm" | "md" | "lg" | "xl" | "xxl";
-type Style = "bold" | "medium";
+type Style = "bold" | "medium" | "small";
 type TextProps = {
     text: string;
     size?: Size;
     style?: Style;
 }
 
-export default function Text({text, size="md", style="medium"}: TextProps){
+export default function Text({text, size="md", style="small"}: TextProps){
         const BASE = "leading-none";
         const SIZE = {
             sm: "text-sm",
@@ -17,7 +17,8 @@ export default function Text({text, size="md", style="medium"}: TextProps){
         };
         const STYLE = {
             bold: "font-bold",
-            medium: "font-medium"
+            medium: "font-medium",
+            small: "font-small"
         };
     return (
         <span className={`${BASE} ${SIZE[size]} ${STYLE[style]} px-1`}>

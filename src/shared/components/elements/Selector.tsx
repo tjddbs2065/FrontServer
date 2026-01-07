@@ -1,14 +1,15 @@
 interface SelectorProps{
     contents?: string[];
+    onSelect?: (value: string) => void;
 }
 
-export default function Selector({ contents }: SelectorProps){
+export default function Selector({ contents, onSelect }: SelectorProps){
     return (
         <div className="relative inline-block w-40">
             <select className="border border-gray-300 rounded-md px-4 py-2 pr-10 text-md w-full appearance-none">
                 {contents?.map(
                         item=> (
-                            <option key={item}>{item}</option>
+                            <option key={item} onClick={()=>{onSelect?({item})} }>{item}</option>
                         )
                     )
                 }

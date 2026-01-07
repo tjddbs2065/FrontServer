@@ -23,29 +23,36 @@ apiClient.interceptors.request.use(
         return config;
     },
     error => Promise.reject(error)
-)
+);
 
 // 응답 시 전처리
 apiClient.interceptors.response.use(
     // 정상일 경우 그대로 response 전달
-    response => {
-        return response;
-    },
+    response => response,
+
     // 실패(4xx, 5xx)일 경우 응답에 포함되어 있는 에러 객체를 가져옴
     error => {
-        const apiError = error?.response?.data?.error;
+        const {status, data} = error.response;
 
-        // 인증 에러 시 이벤트 발생
-        if(error.response?.status === 401){
-            alert("세션이 만료되었습니다.");
+        // 인증 에러
+        if(status === 401){
             useAuthStore.getState().logout();
         }
 
-        // 서버 에러가 있을 경우 사용
-        if(apiError) {
-            return Promise.reject(apiError);
+        // 비지니스 로직 에러(ApiResponse 규격 에러) - ApiResponse에 type과 status를 담아 반환
+        if(data?.success === false && data?.error) {
+            return Promise.reject({
+                ...data.error,
+                status,
+                type: "BUSINESS_ERROR",
+            });
         }
-        // 서버 에러가 없을 경우 그냥 전달
-        return Promise.reject(error);
+        
+        // 시스템 에러
+        return Promise.reject({
+            type: "SYSTEM_ERROR",
+            status,
+            message: "서버 에러가 발생했습니다.",
+        });
     }
-)
+);

@@ -23,7 +23,7 @@ export default function InputButton({text, type="button", variant="basic", size=
     };
 
     const SIZE = {
-        sm: "px-3 py-1 text-sm",
+        sm: "px-2 py-1 text-sm",
         md: "px-4 py-2 text-md",
         lg: "px-6 py-3 text-lg",
     };

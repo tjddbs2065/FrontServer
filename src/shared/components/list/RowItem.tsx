@@ -3,6 +3,7 @@ export interface Column<T>{
     key: keyof T | string;
     label: string;
     render?: (item: T, index?: number) => React.ReactNode;
+    width?: number | "auto" | "fill";
 }
 export interface Row{
     id: number;
