@@ -5,6 +5,7 @@ interface ItemOrderStore{
     selectedItems: ItemSelected[];
     addItem: (item: ItemSelected)=>void;
     removeItem: (index: number)=>void;
+    changeQuantity: (index: number, qty: number)=>void;
 }
 
 export const useItemOrderStore = create<ItemOrderStore>((set)=>({
@@ -16,4 +17,5 @@ export const useItemOrderStore = create<ItemOrderStore>((set)=>({
         return { selectedItems: [...state.selectedItems, item] };
     }),
     removeItem: (index) => set((state)=>({ selectedItems: state.selectedItems.filter((_, i) => i !== index) })),
+    changeQuantity: (index, qty) => set((state)=>({ selectedItems: state.selectedItems.map((item, i) => i === index ? {...item, itemQuantity: qty} : item) })),
 }));

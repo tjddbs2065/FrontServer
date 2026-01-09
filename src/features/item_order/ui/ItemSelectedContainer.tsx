@@ -1,4 +1,5 @@
 import InputButton from "../../../shared/components/elements/InputButton";
+import InputText from "../../../shared/components/elements/InputText";
 import Text from "../../../shared/components/elements/Text";
 import { ListBody } from "../../../shared/components/list/ListBody";
 import ListForm from "../../../shared/components/list/ListForm";
@@ -11,11 +12,26 @@ import useOrderItem from "./hooks/useOrderItems";
 
 export function ItemSelectedContainer(){
 
-    const items = useItemOrderStore(s=>s.selectedItems);
+    const selectedItems = useItemOrderStore(s=>s.selectedItems);
+    const changeQuantity = useItemOrderStore(s=>s.changeQuantity);
     const removeItem = useItemOrderStore(s => s.removeItem);
 
-    const columns: Column<ItemSelected>[] = [
-        ...itemSelectedColumn,
+    const columns: Column<ItemSelected>[] = itemSelectedColumn.map(col => {
+        if(col.key === "quantity"){
+            return {
+                ...col,
+                render: (item, index) => {
+                    return (
+                        <InputText sizeType="xs" type="number" value={item?.itemQuantity?.toString() ?? ""} onChange={(e)=>{
+                            if(e.target.value < "1") { alert("수량은 1 이상이어야 합니다."); e.target.value = "1"; return;}
+                            changeQuantity(index as number, Number(e.target.value));
+                        }}></InputText>)
+                }
+            }
+        }
+        return col;
+    });
+    columns?.push(
         {
             key: "actions" as string,
             label: "삭제",
@@ -31,12 +47,11 @@ export function ItemSelectedContainer(){
                 );
             }
         }
-    ];
+    );  
 
-    const totalPrice = items.reduce((sum, item) => sum + (item.itemOrderPrice), 0);
-    const totalItem = items.length;
+    const totalPrice = selectedItems.reduce((sum, item) => sum + (item.itemOrderPrice * item.itemQuantity), 0);
+    const totalItem = selectedItems.length;
     
-    const selectedItems = useItemOrderStore(s=>s.selectedItems);
     const requestItemOrder = useOrderItem();
 
     return(
@@ -48,9 +63,13 @@ export function ItemSelectedContainer(){
                 header={<ListHeader columns={columns} />} 
                 tail={
                     <div className="flex flex-row justify-between items-center p-2 border-t border-gray-200">
-                        <Text style="bold" text={`총 품목 수 : ${items.length}`} />
+                        <Text style="bold" text={`총 품목 수 : ${selectedItems.length}`} />
                         <Text style="bold" text={`총 발주액 : ${totalPrice.toLocaleString()}원`} />
                         <InputButton text="발주 요청" onClick={()=>{
+                            if(selectedItems.length === 0) {
+                                alert("선택한 품목이 없습니다.");
+                                return;
+                            }
                             requestItemOrder({totalPrice, totalItem, selectedItems});
                             
                         }}/>
@@ -58,7 +77,7 @@ export function ItemSelectedContainer(){
                 }>
                 <div>
                     <ListBody
-                        data={items}
+                        data={selectedItems}
                         columns={columns}
                         isLoading={false}
                         emptyMessage="선택한 품목이 없습니다."

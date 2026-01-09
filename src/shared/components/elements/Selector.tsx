@@ -6,10 +6,13 @@ interface SelectorProps{
 export default function Selector({ contents, onSelect }: SelectorProps){
     return (
         <div className="relative inline-block w-40">
-            <select className="border border-gray-300 rounded-md px-4 py-2 pr-10 text-md w-full appearance-none">
+            <select 
+                className="border border-gray-300 rounded-md px-4 py-2 pr-10 text-md w-full appearance-none"
+                onChange={(e)=>{onSelect?.(e.target.value)}}
+            >
                 {contents?.map(
                         item=> (
-                            <option key={item} onClick={()=>{onSelect?({item})} }>{item}</option>
+                            <option key={item}>{item}</option>
                         )
                     )
                 }
