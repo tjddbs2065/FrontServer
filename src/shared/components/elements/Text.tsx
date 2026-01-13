@@ -1,12 +1,15 @@
 type Size = "sm" | "md" | "lg" | "xl" | "xxl";
 type Style = "bold" | "medium" | "small";
+type Color = "green" | "red" | "yellow" | "black";
 type TextProps = {
     text: string;
     size?: Size;
     style?: Style;
+    color?: Color;
 }
 
-export default function Text({text, size="md", style="small"}: TextProps){
+
+export default function Text({text, size="md", style="small", color="black"}: TextProps){
         const BASE = "leading-none";
         const SIZE = {
             sm: "text-sm",
@@ -20,8 +23,14 @@ export default function Text({text, size="md", style="small"}: TextProps){
             medium: "font-medium",
             small: "font-small"
         };
+        const COLOR = {
+            green: "text-green-600",
+            yellow: "text-yellow-500",
+            red: "text-red-500",
+            black: "text-black"
+        };
     return (
-        <span className={`${BASE} ${SIZE[size]} ${STYLE[style]} px-1`}>
+        <span className={`${BASE} ${SIZE[size]} ${STYLE[style]} ${COLOR[color]} px-1`}>
             {text}
         </span>
     )

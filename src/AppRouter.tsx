@@ -5,6 +5,7 @@ import { useAuthStore } from "./features/auth/model/AuthStore";
 import MainLayout from "./shared/layouts/route/MainLayout";
 import MenuPage from "./pages/MenuPage";
 import ItemOrderPage from "./pages/ItemOrderPage";
+import ItemOrderListPage from "./pages/ItemOrderListPage";
 
 export default function SystemApp(){
     return (
@@ -13,7 +14,8 @@ export default function SystemApp(){
                 <Route element={<MainLayout/>}>
                     <Route path="/menu" element={<ProtectedRoute children={<MenuPage/>} />}></Route>
                     <Route path="/item" element={<ProtectedRoute children={<ItemPage/>} />}></Route>
-                    <Route path="/itemOrder" element={<ProtectedRoute children={<ItemOrderPage/>} />}></Route>
+                    <Route path="/itemOrder" element={<ProtectedRoute children={<ItemOrderPage/>} />}></Route>  
+                    <Route path="/itemOrderList" element={<ProtectedRoute children={<ItemOrderListPage/>} />}></Route>
                     <Route path="/login" element={<LoginPage/>}></Route>
                 </Route>
             </Routes>

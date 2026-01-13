@@ -7,6 +7,6 @@ export const itemColumn: Column<Item>[] = [
     {key: "itemName", label: "품목명"},
     {key: "ingredientName", label: "재료명"},
     {key: "supplier", label: "공급사"},
-    {key: "itemPrice", label: "공급가격"},
+    {key: "itemPrice", label: "공급가격", render: (item)=>item?.itemPrice?.toLocaleString() + " 원"},
     {key: "note", label: "상세", render: (item) => item?.note || "-" },
 ];
